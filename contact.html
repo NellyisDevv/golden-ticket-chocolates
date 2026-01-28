@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Contact Golden Ticket Chocolates. Find out where to purchase our chocolate, ask questions, or learn about wholesale opportunities.">
+  <meta name="keywords" content="contact golden ticket chocolates, buy chocolate, where to find, chocolate locations, FAQ">
+  <meta property="og:title" content="Contact Us - Golden Ticket Chocolates">
+  <meta property="og:description" content="Find out where to purchase our chocolate or get in touch with questions.">
+  <meta property="og:image" content="images/logo/golden-ticket-chocolates-logo.png">
+  <meta property="og:type" content="website">
+  <title>Contact Us - Golden Ticket Chocolates</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Header -->
+  <div id="header-placeholder"></div>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="contact-hero">
+      <div class="container">
+        <h1>Where to Find Us</h1>
+        <p>Currently available in-person only. Contact us to find out where we'll be next.</p>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section">
+      <div class="container">
+        <div class="contact-grid">
+          <!-- Contact Form -->
+          <div class="contact-form">
+            <h2>Send Us a Message</h2>
+            <div class="form-success">
+              Thank you for your message! We'll get back to you within 24 hours.
+            </div>
+            <form name="contact" method="POST" netlify action="contact.html?success=true">
+              <input type="hidden" name="form-name" value="contact">
+
+              <div class="form-group">
+                <label for="name">Name <span class="required">*</span></label>
+                <input type="text" id="name" name="name" required>
+                <p class="form-error"></p>
+              </div>
+
+              <div class="form-group">
+                <label for="email">Email <span class="required">*</span></label>
+                <input type="email" id="email" name="email" required>
+                <p class="form-error"></p>
+              </div>
+
+              <div class="form-group">
+                <label for="phone">Phone (optional)</label>
+                <input type="tel" id="phone" name="phone">
+                <p class="form-error"></p>
+              </div>
+
+              <div class="form-group">
+                <label for="subject">Subject <span class="required">*</span></label>
+                <select id="subject" name="subject" required>
+                  <option value="">Select a subject...</option>
+                  <option value="questions">Questions</option>
+                  <option value="wholesale">Wholesale Inquiry</option>
+                  <option value="feedback">Feedback</option>
+                  <option value="other">Other</option>
+                </select>
+                <p class="form-error"></p>
+              </div>
+
+              <div class="form-group">
+                <label for="message">Message <span class="required">*</span></label>
+                <textarea id="message" name="message" required></textarea>
+                <p class="form-error"></p>
+              </div>
+
+              <button type="submit" class="btn btn-primary">Send Message</button>
+            </form>
+          </div>
+
+          <!-- Contact Info -->
+          <div class="contact-info">
+            <h3>Contact Information</h3>
+            <ul class="contact-details">
+              <li>
+                <strong>Email</strong>
+                <a href="mailto:rhett.j.diez@proton.me">rhett.j.diez@proton.me</a>
+              </li>
+              <li>
+                <strong>Phone</strong>
+                <a href="tel:813-475-8877">813-475-8877</a>
+              </li>
+              <li>
+                <strong>Response Time</strong>
+                We aim to respond within 24 hours
+              </li>
+            </ul>
+
+            <div class="sales-locations">
+              <h4>Sales Locations</h4>
+              <p>Currently selling in-person at various locations and events throughout our community.</p>
+              <p>Contact us to find out where we'll be next!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section section-alt">
+      <div class="container">
+        <h2 class="text-center">Frequently Asked Questions</h2>
+        <div class="faq-list">
+          <article class="faq-item">
+            <h3 class="faq-question">Are these chocolates truly organic and vegan?</h3>
+            <p class="faq-answer">Yes, all our chocolates are organic, vegan, non-GMO home-made dark chocolate with 75% purity. We carefully source our ingredients to ensure the highest quality and ethical standards.</p>
+          </article>
+
+          <article class="faq-item">
+            <h3 class="faq-question">How do the gift cards work?</h3>
+            <p class="faq-answer">Every 3 packages you purchase equals $15, which funds one restaurant gift card. These gift cards are distributed directly to homeless, impoverished, and less fortunate individuals in our community, allowing them to enjoy a meal at a local restaurant.</p>
+          </article>
+
+          <article class="faq-item">
+            <h3 class="faq-question">Do you ship?</h3>
+            <p class="faq-answer">Currently, we only sell in-person at various locations and events. We do not ship or sell through retail stores at this time. Contact us to find out where you can purchase our chocolate.</p>
+          </article>
+
+          <article class="faq-item">
+            <h3 class="faq-question">Is this a legitimate non-profit?</h3>
+            <p class="faq-answer">Yes, Golden Ticket Chocolates is a registered 501(c)(3) non-profit organization with federal, state, and county licensing. We operate with full transparency, and 100% of our profits go directly to supporting our community through restaurant gift cards.</p>
+          </article>
+
+          <article class="faq-item">
+            <h3 class="faq-question">Why is there a limit of 3 packages per person?</h3>
+            <p class="faq-answer">As a small, home-made operation, we produce limited quantities of chocolate. The 3-package limit helps ensure that more community members have the opportunity to enjoy our chocolate and support our mission.</p>
+          </article>
+
+          <article class="faq-item">
+            <h3 class="faq-question">Can I make a donation without purchasing chocolate?</h3>
+            <p class="faq-answer">We appreciate your generosity! Please contact us directly to discuss donation options. We're always grateful for community support in any form.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Banner -->
+    <section class="cta-banner">
+      <div class="container">
+        <h2>Have More Questions?</h2>
+        <p>We're here to help. Reach out anytime and we'll get back to you as soon as possible.</p>
+        <a href="mailto:rhett.j.diez@proton.me" class="btn btn-outline">Email Us Directly</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <!-- Footer -->
+  <div id="footer-placeholder"></div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

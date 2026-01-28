@@ -1,0 +1,1277 @@
+// Golden Ticket Chocolates - LESS Stylesheet
+// Em/VW Scaling System: 15px mobile → 20px at 1024px → 1vw at 2000px+
+
+// ================================
+// FONTS
+// ================================
+@import url(https://db.onlinewebfonts.com/c/df14e18d9891b8928d15a6143bbe40e3?family=Catseye+W00+Bold);
+@import url(https://db.onlinewebfonts.com/c/e37dabd00ca099f100dbfc2d18f08d72?family=VAG+Rundschrift);
+
+// ================================
+// VARIABLES - Brand Colors
+// ================================
+
+// Primary Burgundy
+@burgundy-primary: #5A001E;
+@burgundy-lighter: #6E0026;
+@burgundy-darker: #3C0013;
+
+// Purple Accents
+@purple-accent-1: #4A004A;
+@purple-accent-2: #8A2BE2;
+@purple-accent-3: #C77DFF;
+@purple-accent-4: #6A5ACD;
+@purple-accent-5: #FF69B4;
+
+// Gold/Accent Colors
+@gold-primary: #28000D;
+@gold-lighter: #5C5C5C;
+@gold-darker: #3C3C3C;
+@gold-accent: #28000D;
+
+// Neutral Colors
+@white: #FFFFFF;
+@off-white: #F5F5F5;
+@light-gray: #EEEEEE;
+@beige: #F3F0EB;
+@medium-gray: #888888;
+@dark-gray: #333333;
+@black: #000000;
+
+// ================================
+// BASE FONT SIZE - Responsive Scaling
+// ================================
+// Formula: min(max(14px, 1.56vw), max(16px, 0.8vw))
+// - 14px minimum (mobile)
+// - Scales to 16px at ~1024px
+// - 0.8vw takes over at 2000px+ (continues scaling)
+
+html {
+  font-size: min(max(14px, 1.56vw), max(16px, 0.8vw));
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+// ================================
+// TYPOGRAPHY - Em Calculations
+// ================================
+// All sizes calculated as: desired-px / base-px = em
+// Base: 20px at desktop
+
+body {
+  font-family: "VAG Rundschrift", sans-serif;
+  font-size: 1em; // 20px base
+  line-height: 1.6;
+  color: @white;
+  background-color: @burgundy-primary;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Catseye W00 Bold", serif;
+  font-weight: 700;
+  line-height: 1.2;
+  color: @white;
+  margin-top: 0;
+}
+
+// 48px / 20px = 2.4em
+h1 {
+  font-size: 2.4em;
+  margin-bottom: 0.5em;
+}
+
+// 36px / 20px = 1.8em
+h2 {
+  font-size: 1.8em;
+  margin-bottom: 0.6em;
+}
+
+// 28px / 20px = 1.4em
+h3 {
+  font-size: 1.4em;
+  margin-bottom: 0.5em;
+}
+
+// 24px / 20px = 1.2em
+h4 {
+  font-size: 1.2em;
+  margin-bottom: 0.5em;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 1em;
+}
+
+a {
+  color: @white;
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    color: @off-white;
+    text-decoration: underline;
+  }
+}
+
+// ================================
+// LAYOUT UTILITIES
+// ================================
+
+.container {
+  width: 90%;
+  max-width: 60em; // 1200px / 20px
+  margin: 0 auto;
+  padding: 0 1em;
+}
+
+.section {
+  padding: 4em 0; // 80px / 20px
+}
+
+.section-alt {
+  background-color: #4A0018;
+}
+
+.text-center {
+  text-align: center;
+}
+
+// ================================
+// HEADER & NAVIGATION
+// ================================
+
+.header {
+  background-color: @burgundy-primary;
+  padding: 0.75em 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  max-width: 60em;
+  margin: 0 auto;
+  padding: 0 1em;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  height: 4.5em;
+  width: auto;
+}
+
+.logo-text {
+  font-family: "Catseye W00 Bold", serif;
+  font-size: 1.2em;
+  font-weight: 700;
+  color: @white;
+}
+
+// Navigation
+.nav {
+  display: flex;
+  align-items: center;
+}
+
+.nav-list {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 2em;
+}
+
+.nav-link {
+  color: @white;
+  font-family: "Catseye W00 Bold", serif;
+  font-size: 0.9em;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.85;
+
+  &:hover,
+  &:focus {
+    color: @white;
+    opacity: 1;
+    text-decoration: none;
+  }
+
+  &.active {
+    color: @white;
+    opacity: 1;
+  }
+}
+
+// Mobile Menu Toggle
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5em;
+}
+
+.nav-toggle-icon {
+  display: block;
+  width: 1.5em;
+  height: 0.15em;
+  background-color: @white;
+  position: relative;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: @white;
+    left: 0;
+  }
+
+  &::before {
+    top: -0.4em;
+  }
+
+  &::after {
+    bottom: -0.4em;
+  }
+}
+
+// Mobile Navigation Styles
+.nav-mobile-open .nav-toggle-icon {
+  background-color: transparent;
+
+  &::before {
+    top: 0;
+    transform: rotate(45deg);
+  }
+
+  &::after {
+    bottom: 0;
+    transform: rotate(-45deg);
+  }
+}
+
+// Mobile breakpoint simulation using container queries fallback
+// Hide desktop nav and show mobile toggle on narrow viewports
+@media screen and (max-width: 48em) {
+  .nav-toggle {
+    display: block;
+  }
+
+  .nav-list {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: @burgundy-darker;
+    flex-direction: column;
+    padding: 1em 0;
+    gap: 0;
+  }
+
+  .nav-list.nav-open {
+    display: flex;
+  }
+
+  .nav-list li {
+    text-align: center;
+    padding: 0.75em 0;
+  }
+
+  .header-container {
+    position: relative;
+  }
+}
+
+// ================================
+// HERO SECTION
+// ================================
+
+.hero {
+  position: relative;
+  color: @white;
+  padding: 15em 0;
+  background-image: url('../images/hero/smaller_chocolates_in_the_clouds.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+  // Dark overlay for text readability
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(60, 0, 19, 0.25);
+    z-index: 1;
+  }
+
+  .container {
+    position: relative;
+    z-index: 2;
+  }
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3em;
+  align-items: center;
+  justify-items: center;
+}
+
+.hero-content {
+  text-align: center;
+}
+
+.hero-logo-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1em;
+}
+
+.hero-logo {
+  width: 100%;
+  max-width: 30em;
+  height: auto;
+}
+
+.hero h1 {
+  color: @white;
+  font-size: 2.8em;
+  margin-bottom: 0.3em;
+  line-height: 1.1;
+  text-shadow: 0 0.05em 0.2em rgba(0, 0, 0, 0.6);
+}
+
+.hero-tagline {
+  font-family: "Catseye W00 Bold", serif;
+  font-size: 1.3em;
+  color: @white;
+  font-style: italic;
+  margin-bottom: 0.5em;
+  text-shadow: 0 0.05em 0.2em rgba(0, 0, 0, 0.6);
+}
+
+.hero-subtitle {
+  font-size: 1.15em;
+  color: @white;
+  margin-bottom: 2em;
+  text-shadow: 0 0.05em 0.2em rgba(0, 0, 0, 0.6);
+}
+
+.hero-cta {
+  display: flex;
+  gap: 1em;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+// Mobile: stack vertically
+@media screen and (max-width: 48em) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .hero-content {
+    text-align: center;
+    order: 2;
+  }
+
+  .hero-logo-wrapper {
+    order: 1;
+  }
+
+  .hero-cta {
+    justify-content: center;
+  }
+}
+
+// ================================
+// BUTTONS
+// ================================
+
+.btn {
+  display: inline-block;
+  width: 10em;
+  padding: 0.8em 1em;
+  font-size: 1em;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  border-radius: 0.25em;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: #DCAE55;
+  color: @burgundy-primary;
+
+  &:hover,
+  &:focus {
+    background-color: #C99B42;
+    color: @burgundy-primary;
+    text-decoration: none;
+  }
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: @white;
+  border: 0.1em solid @white;
+
+  &:hover,
+  &:focus {
+    background-color: @white;
+    color: @burgundy-primary;
+    text-decoration: none;
+  }
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: @white;
+  border: 0.1em solid @white;
+
+  &:hover,
+  &:focus {
+    background-color: @white;
+    color: @burgundy-primary;
+    text-decoration: none;
+  }
+}
+
+// ================================
+// MISSION & HOW IT WORKS SECTION
+// ================================
+
+.mission-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4em;
+  align-items: start;
+}
+
+.mission-content {
+  padding-right: 2em;
+}
+
+.accent-heading {
+  font-size: 0.85em;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #DCAE55;
+  margin-bottom: 0.75em;
+}
+
+.mission-content h2 {
+  font-size: 2.2em;
+  line-height: 1.2;
+  margin-bottom: 0.75em;
+}
+
+.mission-content > p:last-of-type {
+  font-size: 1em;
+  line-height: 1.7;
+  color: @white;
+}
+
+.mission-features {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
+
+.feature-item {
+  display: flex;
+  gap: 1.25em;
+  align-items: flex-start;
+}
+
+.feature-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 2.5em;
+  height: 2.5em;
+  min-width: 2.5em;
+  background-color: @gold-primary;
+  color: @white;
+  font-size: 1em;
+  font-weight: 700;
+  border-radius: 50%;
+}
+
+.feature-text h3 {
+  font-size: 1.1em;
+  margin-bottom: 0.25em;
+  color: @white;
+}
+
+.feature-text p {
+  font-size: 0.95em;
+  color: @off-white;
+  margin-bottom: 0;
+  line-height: 1.6;
+}
+
+// Mobile: stack vertically
+@media screen and (max-width: 48em) {
+  .mission-grid {
+    grid-template-columns: 1fr;
+    gap: 3em;
+  }
+
+  .mission-content {
+    padding-right: 0;
+    text-align: center;
+  }
+
+  .feature-item {
+    text-align: left;
+  }
+}
+
+// Legacy support for steps grid (used on other pages)
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12em, 1fr));
+  gap: 2em;
+  margin-top: 2em;
+}
+
+.step-card {
+  text-align: center;
+  padding: 2em 1em;
+  background-color: @burgundy-darker;
+  border-radius: 0.5em;
+  box-shadow: 0 0.1em 0.3em rgba(0, 0, 0, 0.2);
+}
+
+.step-number {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 2.5em;
+  height: 2.5em;
+  background-color: @gold-primary;
+  color: @white;
+  font-size: 1.2em;
+  font-weight: 700;
+  border-radius: 50%;
+  margin-bottom: 1em;
+}
+
+.step-card h3 {
+  font-size: 1.1em;
+  margin-bottom: 0.5em;
+}
+
+.step-card p {
+  font-size: 0.9em;
+  color: @off-white;
+  margin-bottom: 0;
+}
+
+// ================================
+// PRODUCTS SECTION
+// ================================
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15em, 1fr));
+  gap: 2em;
+  margin-top: 2em;
+}
+
+.product-card {
+  background-color: @burgundy-darker;
+  border-radius: 0.5em;
+  overflow: hidden;
+  box-shadow: 0 0.1em 0.3em rgba(0, 0, 0, 0.2);
+}
+
+.product-image {
+  width: 100%;
+  height: 12em;
+  background-color: #2D000F;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-image img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+}
+
+.product-placeholder {
+  color: @medium-gray;
+  font-style: italic;
+}
+
+.product-info {
+  padding: 1.5em;
+}
+
+.product-info h3 {
+  font-size: 1.2em;
+  margin-bottom: 0.5em;
+}
+
+.product-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em;
+  margin-bottom: 1em;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.2em 0.6em;
+  font-size: 0.7em;
+  font-weight: 600;
+  text-transform: uppercase;
+  border-radius: 0.25em;
+  background-color: #DCAE55;
+  color: @burgundy-primary;
+}
+
+.badge-gold {
+  background-color: #C99B42;
+  color: @burgundy-primary;
+}
+
+.product-description {
+  font-size: 0.9em;
+  color: @off-white;
+  margin-bottom: 1em;
+}
+
+.product-price {
+  font-size: 1.4em;
+  font-weight: 700;
+  color: #DCAE55;
+}
+
+.product-contents {
+  font-size: 0.85em;
+  color: @off-white;
+}
+
+// Coming Soon Product
+.product-card-coming-soon {
+  opacity: 0.7;
+
+  .product-image {
+    background-color: @burgundy-primary;
+    color: @white;
+    font-weight: 600;
+    font-size: 1.1em;
+  }
+}
+
+// Product Notice
+.product-notice {
+  background-color: @gold-primary;
+  color: @white;
+  padding: 1em 1.5em;
+  border-radius: 0.5em;
+  text-align: center;
+  margin-top: 2em;
+  font-weight: 600;
+}
+
+// ================================
+// IMPACT MODEL SECTION
+// ================================
+
+.impact-model {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15em, 1fr));
+  gap: 2em;
+  margin-top: 2em;
+}
+
+.impact-item {
+  text-align: center;
+  padding: 2em;
+  background-color: @burgundy-darker;
+  border-radius: 0.5em;
+  border-left: 0.25em solid #DCAE55;
+}
+
+.impact-item h3 {
+  color: #DCAE55;
+}
+
+// ================================
+// VALUES SECTION
+// ================================
+
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14em, 1fr));
+  gap: 2em;
+  margin-top: 2em;
+}
+
+.value-card {
+  text-align: center;
+  padding: 2em;
+  background-color: @burgundy-darker;
+  border-radius: 0.5em;
+  box-shadow: 0 0.1em 0.3em rgba(0, 0, 0, 0.2);
+}
+
+.value-icon {
+  font-size: 2.5em;
+  margin-bottom: 0.5em;
+}
+
+.value-card h3 {
+  font-size: 1.1em;
+}
+
+.value-card p {
+  font-size: 0.9em;
+  color: @off-white;
+  margin-bottom: 0;
+}
+
+// ================================
+// FOUNDER SECTION
+// ================================
+
+.founder-section {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 3em;
+  align-items: center;
+}
+
+.founder-image {
+  width: 100%;
+  max-width: 15em;
+  height: auto;
+  border-radius: 0.5em;
+  background-color: @burgundy-darker;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: @off-white;
+  font-style: italic;
+}
+
+.founder-info h3 {
+  font-size: 1.6em;
+  margin-bottom: 0.3em;
+}
+
+.founder-title {
+  color: #DCAE55;
+  font-weight: 600;
+  margin-bottom: 1em;
+}
+
+.founder-credentials {
+  list-style: none;
+  padding: 0;
+  margin: 1.5em 0;
+}
+
+.founder-credentials li {
+  padding: 0.3em 0;
+  padding-left: 1.5em;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.7em;
+    width: 0.5em;
+    height: 0.5em;
+    background-color: @gold-primary;
+    border-radius: 50%;
+  }
+}
+
+@media screen and (max-width: 48em) {
+  .founder-section {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .founder-image {
+    margin: 0 auto;
+  }
+
+  .founder-credentials {
+    text-align: left;
+    max-width: 20em;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+// ================================
+// STORY SECTION
+// ================================
+
+.story-content {
+  max-width: 45em;
+  margin: 0 auto;
+}
+
+.story-content p {
+  font-size: 1.1em;
+  line-height: 1.8;
+}
+
+.story-quote {
+  font-family: "Catseye W00 Bold", serif;
+  font-size: 1.4em;
+  font-style: italic;
+  color: #DCAE55;
+  border-left: 0.2em solid #DCAE55;
+  padding-left: 1em;
+  margin: 2em 0;
+}
+
+// ================================
+// IMPACT PAGE SECTIONS
+// ================================
+
+.impact-hero {
+  background-color: @burgundy-primary;
+  color: @white;
+  padding: 4em 0;
+  text-align: center;
+}
+
+.impact-hero h1 {
+  color: @white;
+}
+
+.impact-hero p {
+  font-size: 1.2em;
+  max-width: 40em;
+  margin: 0 auto;
+}
+
+.impact-process {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(18em, 1fr));
+  gap: 2em;
+  margin-top: 2em;
+}
+
+.process-card {
+  padding: 2em;
+  background-color: @burgundy-darker;
+  border-radius: 0.5em;
+  box-shadow: 0 0.1em 0.3em rgba(0, 0, 0, 0.2);
+}
+
+.process-card h3 {
+  color: @white;
+  border-bottom: 0.1em solid #DCAE55;
+  padding-bottom: 0.5em;
+  margin-bottom: 1em;
+}
+
+.commitment-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.commitment-list li {
+  padding: 1em 0;
+  border-bottom: 0.05em solid @burgundy-darker;
+  padding-left: 2em;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 1.3em;
+    width: 0.8em;
+    height: 0.8em;
+    background-color: @gold-primary;
+    border-radius: 50%;
+  }
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+// ================================
+// CONTACT PAGE
+// ================================
+
+.contact-hero {
+  background-color: @burgundy-primary;
+  color: @white;
+  padding: 4em 0;
+  text-align: center;
+}
+
+.contact-hero h1 {
+  color: @white;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3em;
+  margin-top: 2em;
+}
+
+@media screen and (max-width: 48em) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+// Contact Form
+.contact-form {
+  background-color: @burgundy-darker;
+  padding: 2em;
+  border-radius: 0.5em;
+  box-shadow: 0 0.1em 0.3em rgba(0, 0, 0, 0.2);
+}
+
+.form-group {
+  margin-bottom: 1.5em;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5em;
+  color: @white;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 0.8em;
+  font-size: 1em;
+  font-family: inherit;
+  border: 0.05em solid @off-white;
+  border-radius: 0.25em;
+  background-color: @burgundy-darker;
+  color: @white;
+
+  &:focus {
+    outline: none;
+    border-color: #DCAE55;
+    box-shadow: 0 0 0 0.15em rgba(193, 170, 118, 0.3);
+  }
+}
+
+.form-group textarea {
+  min-height: 8em;
+  resize: vertical;
+}
+
+.form-group .required {
+  color: #DCAE55;
+}
+
+.form-error {
+  color: #CC0000;
+  font-size: 0.85em;
+  margin-top: 0.3em;
+  display: none;
+}
+
+.form-group.has-error input,
+.form-group.has-error select,
+.form-group.has-error textarea {
+  border-color: #CC0000;
+}
+
+.form-group.has-error .form-error {
+  display: block;
+}
+
+.form-success {
+  background-color: #D4EDDA;
+  color: #155724;
+  padding: 1em;
+  border-radius: 0.25em;
+  margin-bottom: 1.5em;
+  display: none;
+}
+
+.form-success.show {
+  display: block;
+}
+
+// Contact Info
+.contact-info {
+  padding: 2em;
+}
+
+.contact-info h3 {
+  margin-bottom: 1em;
+}
+
+.contact-details {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2em;
+}
+
+.contact-details li {
+  padding: 0.75em 0;
+  border-bottom: 0.05em solid @burgundy-lighter;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.contact-details strong {
+  display: block;
+  color: #DCAE55;
+  margin-bottom: 0.25em;
+}
+
+.contact-details a {
+  color: @white;
+
+  &:hover {
+    color: #DCAE55;
+  }
+}
+
+// Sales Locations
+.sales-locations {
+  background-color: @burgundy-darker;
+  padding: 1.5em;
+  border-radius: 0.5em;
+}
+
+.sales-locations h4 {
+  color: #DCAE55;
+  margin-bottom: 0.5em;
+}
+
+// ================================
+// FAQ SECTION
+// ================================
+
+.faq-list {
+  max-width: 45em;
+  margin: 2em auto 0;
+}
+
+.faq-item {
+  background-color: @burgundy-darker;
+  border-radius: 0.5em;
+  margin-bottom: 1em;
+  box-shadow: 0 0.1em 0.3em rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+.faq-question {
+  font-weight: 600;
+  padding: 1.25em 1.5em;
+  background-color: @burgundy-primary;
+  color: @white;
+  margin: 0;
+  font-size: 1em;
+}
+
+.faq-answer {
+  padding: 1.25em 1.5em;
+  margin: 0;
+  line-height: 1.7;
+}
+
+// ================================
+// FOOTER
+// ================================
+
+.footer {
+  background-image: url('../images/canvas/stripe-canvas.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: @white;
+  padding: 6em 0 4em;
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.footer-logo {
+  width: 20em;
+  height: auto;
+  margin-bottom: 2.5em;
+}
+
+.footer-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25em;
+  margin-bottom: 2.5em;
+}
+
+.footer-nav a {
+  color: @white;
+  font-family: "Catseye W00 Bold", serif;
+  font-size: 1.1em;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+
+  &:hover {
+    color: @white;
+    opacity: 0.8;
+    text-decoration: none;
+  }
+}
+
+.footer-contact {
+  display: flex;
+  gap: 2.5em;
+  margin-bottom: 2.5em;
+}
+
+.footer-contact a {
+  color: @white;
+  text-decoration: underline;
+  font-size: 0.95em;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.footer-copyright {
+  font-size: 0.85em;
+  opacity: 0.8;
+  margin: 0;
+}
+
+// Mobile: stack contact links
+@media screen and (max-width: 30em) {
+  .footer-contact {
+    flex-direction: column;
+    gap: 1em;
+  }
+}
+
+// ================================
+// CTA BANNER
+// ================================
+
+.cta-banner {
+  position: relative;
+  background-image: url('../images/canvas/chocolate-bar-texture-background.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: @white;
+  padding: 9em 0;
+  text-align: center;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(60, 0, 19, 0.4);
+    z-index: 1;
+  }
+
+  .container {
+    position: relative;
+    z-index: 2;
+  }
+}
+
+.cta-banner h2 {
+  color: @white;
+  margin-bottom: 0.5em;
+}
+
+.cta-banner .btn-outline {
+  color: @white;
+  border-color: @white;
+
+  &:hover,
+  &:focus {
+    background-color: @white;
+    color: @gold-primary;
+  }
+}
+
+.cta-banner p {
+  font-size: 1.1em;
+  margin-bottom: 1.5em;
+}
+
+// ================================
+// UTILITY CLASSES
+// ================================
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.gold-text {
+  color: @gold-primary;
+}
+
+.burgundy-text {
+  color: @burgundy-primary;
+}
