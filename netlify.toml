@@ -1,0 +1,12 @@
+[build]
+  command = "npm run build:css && npm run build"
+  publish = "_site"
+
+[build.environment]
+  NODE_VERSION = "18"
+
+# Redirect for Netlify Identity
+[[redirects]]
+  from = "/admin/*"
+  to = "/admin/index.html"
+  status = 200

@@ -18,6 +18,7 @@ Thumbs.db
 *~
 
 # Build artifacts
+_site/
 *.log
 npm-debug.log*
 
