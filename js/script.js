@@ -179,7 +179,7 @@
     // Load header
     var headerPlaceholder = document.getElementById('header-placeholder');
     if (headerPlaceholder) {
-      fetch('includes/header.html')
+      fetch('/includes/header.html')
         .then(function(response) {
           return response.text();
         })
@@ -196,7 +196,7 @@
     // Load footer
     var footerPlaceholder = document.getElementById('footer-placeholder');
     if (footerPlaceholder) {
-      fetch('includes/footer.html')
+      fetch('/includes/footer.html')
         .then(function(response) {
           return response.text();
         })

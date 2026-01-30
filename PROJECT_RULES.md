@@ -4,106 +4,114 @@ This document contains all the styling rules and guidelines established for this
 
 ---
 
-## 1. Responsive Typography - Em/VW Scaling System
+## 1. Voice & Tone
 
-The site uses a fluid typography system that scales based on viewport width:
+**IMPORTANT**: Rhett is a one-man operation. All copy uses **first-person singular**:
+- Use "I", "me", "my" instead of "we", "us", "our"
+- "Find Me" not "Find Us"
+- "Contact Me" not "Contact Us"
+- "I sell", "I craft", "I accept" etc.
 
-```css
-html {
-  font-size: min(max(14px, 1.56vw), max(16px, 0.8vw));
+**Warm, Community-Focused Language**:
+- Use "neighbors" instead of "those in need" or "impoverished individuals"
+- Use "neighbors facing hard times" instead of clinical language
+- Use "in our community" instead of "in our area"
+- Keep tone personal and grassroots, not corporate
+
+---
+
+## 2. Chocolate Piece Styling (KEY DESIGN ELEMENT)
+
+All containers/cards use a **3D chocolate piece** aesthetic:
+
+### Chocolate Color Variables
+```less
+@chocolate-dark: #1A0D05;
+@chocolate-medium: #2C1608;
+@chocolate-light: #4A2814;
+@chocolate-highlight: #5C3317;
+```
+
+### Chocolate Piece CSS Pattern
+Apply this to all card/container components:
+```less
+.component {
+  background: @chocolate-medium;
+  border-radius: 0.3em;
+  position: relative;
+
+  // 3D raised edges
+  border: 0.25em solid @chocolate-light;
+  border-bottom-color: @chocolate-dark;
+  border-right-color: @chocolate-dark;
+
+  // Depth shadow
+  box-shadow:
+    0.2em 0.3em 0.6em rgba(0, 0, 0, 0.5),
+    0.1em 0.15em 0.3em rgba(0, 0, 0, 0.4),
+    inset 0.1em 0.1em 0.2em rgba(255, 255, 255, 0.08),
+    inset -0.1em -0.1em 0.3em rgba(0, 0, 0, 0.25);
+
+  // Inner chocolate square pattern
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0.5em;
+    left: 0.5em;
+    right: 0.5em;
+    bottom: 0.5em;
+    border: 0.15em solid transparent;
+    border-top-color: rgba(255, 255, 255, 0.06);
+    border-left-color: rgba(255, 255, 255, 0.06);
+    border-bottom-color: rgba(0, 0, 0, 0.15);
+    border-right-color: rgba(0, 0, 0, 0.15);
+    border-radius: 0.15em;
+    pointer-events: none;
+  }
+}
+
+// Content inside needs z-index: 1 to appear above ::before
+.component h3, .component p {
+  position: relative;
+  z-index: 1;
 }
 ```
 
-**Scaling Behavior:**
-- **Mobile (small screens)**: 14px minimum base font size
-- **Desktop (~1024px)**: 16px base font size
-- **Large screens (2000px+)**: Continues scaling with 0.8vw
-
-**All measurements use em calculations**: `desired-px / base-px = em`
-
----
-
-## 2. Color Palette
-
-### Primary Colors
-| Name | Hex Code | Usage |
-|------|----------|-------|
-| Primary Burgundy | `#3C0013` | Header, footer, primary brand color |
-| Burgundy Lighter | `#58001D` | Hover states |
-| Burgundy Darker | `#28000D` | Footer background, darker accents |
-
-### Secondary/Accent Colors
-| Name | Hex Code | Usage |
-|------|----------|-------|
-| Secondary Gray | `#4C4C4C` | Accent elements, icons, borders |
-| Gray Lighter | `#5C5C5C` | Hover states |
-| Gray Darker | `#3C3C3C` | Darker accents |
-
-### Button Colors
-| Name | Hex Code | Usage |
-|------|----------|-------|
-| Primary Button | `#C1AA76` | Main CTA buttons (warm gold/tan) |
-| Primary Button Hover | `#A89460` | Hover state |
-
-### Background Colors
-| Name | Hex Code | Usage |
-|------|----------|-------|
-| Main Background | `#F9F6F1` | Site background (super light beige, NOT white) |
-| Off-white | `#F5F2ED` | Alternate sections |
-| Light Gray | `#F0EDE8` | Cards, alternate backgrounds |
-
-**Important**: Use beige tones instead of pure white (#fff) for backgrounds.
+### Components Using Chocolate Styling
+- `.review-card` - Customer reviews
+- `.blog-card` - Blog post cards
+- `.benefits-list` - Blog benefits lists
+- `.step-card` - Step cards
+- `.product-card` - Product listings
+- `.impact-item` - Impact sections
+- `.value-card` - Core values
+- `.process-card` - Process cards
+- `.contact-form` - Contact form
+- `.sales-locations` - Sales info box
+- `.faq-item` - FAQ items
+- `.post-cta` - Blog CTA sections
 
 ---
 
-## 3. Typography
+## 3. Text Selection & Scrollbar
 
-### Fonts
-| Usage | Font Family | Source |
-|-------|-------------|--------|
-| Headings | "Catseye W00 Bold" | `@import url(https://db.onlinewebfonts.com/c/df14e18d9891b8928d15a6143bbe40e3?family=Catseye+W00+Bold)` |
-| Body Text | "VAG Rundschrift" | `@import url(https://db.onlinewebfonts.com/c/e37dabd00ca099f100dbfc2d18f08d72?family=VAG+Rundschrift)` |
+```less
+// Text selection - chocolate brown
+::selection {
+  background-color: @chocolate-medium;
+  color: @white;
+}
 
-**Note**: Google Fonts (Playfair Display, Lato) were replaced with these custom fonts.
-
----
-
-## 4. Component Structure
-
-### Header
-- Stored in `includes/header.html`
-- Loaded via JavaScript into `<div id="header-placeholder"></div>`
-- Contains logo image (not text)
-- **No "Home" link** in navigation - users click logo to go home
-- Navigation items: About, Products, Impact, Contact
-- Background color: Primary Burgundy (`#3C0013`)
-
-### Footer
-- Stored in `includes/footer.html`
-- Loaded via JavaScript into `<div id="footer-placeholder"></div>`
-- **Centered layout** with:
-  1. Logo at top
-  2. Stacked navigation links (About Us, Products, Our Impact, Contact)
-  3. Email and phone number **inline and underlined** (so users know to click)
-  4. Copyright at bottom (year 2026)
-- Background color: Primary Burgundy (`#3C0013`)
-
-### Hero Section (Homepage)
-- **Separate from header** (header stays solid burgundy)
-- Uses **background image with dark tint overlay**
-- Overlay: `rgba(60, 0, 19, 0.75)` for text readability
-- White text on top of overlay
-- Two-column layout: text on left, logo on right
-- Mobile: stacks vertically with logo on top
-
-### Buttons on Dark Backgrounds
-- Buttons in dark sections (CTA banner, etc.) should be **white/light colored**
-- Use `.btn-outline` with white border and text
-- Hover: white background with dark text
+// Scrollbar - chocolate brown
+::-webkit-scrollbar { width: 0.75em; }
+::-webkit-scrollbar-track { background: @burgundy-darker; }
+::-webkit-scrollbar-thumb { background: @chocolate-medium; border-radius: 0.5em; }
+html { scrollbar-color: @chocolate-medium @burgundy-darker; }
+```
 
 ---
 
-## 5. File Structure
+## 4. File Structure
 
 ```
 golden-ticket-chocolates/
@@ -112,111 +120,162 @@ golden-ticket-chocolates/
 ├── products.html
 ├── impact.html
 ├── contact.html
+├── privacy.html
+├── terms.html
+├── blog/
+│   ├── index.html              # Blog listing page
+│   └── [post-name].html        # Individual blog posts
 ├── includes/
-│   ├── header.html    # Shared header component
-│   └── footer.html    # Shared footer component
+│   ├── header.html             # Shared header (use ABSOLUTE paths)
+│   └── footer.html             # Shared footer (use ABSOLUTE paths)
 ├── css/
-│   ├── style.less     # LESS source (edit this)
-│   └── style.css      # Compiled CSS (auto-generated)
+│   ├── style.less              # LESS source (edit this)
+│   └── style.css               # Compiled CSS
 ├── js/
-│   └── script.js      # Loads includes, mobile nav, form validation
+│   └── script.js               # Loads includes, mobile nav, form validation
 ├── images/
-│   └── logo/          # Logo files
-└── PROJECT_RULES.md   # This file
+│   └── logo/
+├── package.json                # Only contains LESS compiler
+├── netlify.toml                # Netlify deployment config
+└── PROJECT_RULES.md
 ```
 
-### Compiling CSS
-After editing `style.less`, compile with:
+---
+
+## 5. Build System
+
+**No Eleventy** - Just LESS for CSS preprocessing.
+
+### package.json
+```json
+{
+  "scripts": {
+    "build:css": "lessc css/style.less css/style.css"
+  },
+  "devDependencies": {
+    "less": "^4.2.0"
+  }
+}
+```
+
+### Compile CSS
 ```bash
-npx lessc css/style.less css/style.css
+npm run build:css
+```
+
+### netlify.toml
+```toml
+[build]
+  command = "npm run build:css"
+  publish = "."
 ```
 
 ---
 
-## 6. General Styling Rules
+## 6. URL Paths
 
-1. **No animations or transitions** - Keep design simple and static
-2. **Mobile-first approach** - Design for mobile, scale up
-3. **Em-based measurements** - Use em units calculated from base font size
-4. **Minimal media queries** - Rely on em/vw scaling system for responsiveness
-5. **Good color contrast** - Ensure WCAG AA compliance
-6. **Semantic HTML5** - Use proper elements (header, nav, main, section, footer)
+**IMPORTANT**: Header and footer use **absolute paths** (starting with `/`) so they work from any subdirectory (including `/blog/`):
 
----
+```html
+<!-- In includes/header.html and footer.html -->
+<a href="/">Home</a>
+<a href="/about.html">About</a>
+<a href="/blog/">Blog</a>
+<img src="/images/logo/logo.png">
+```
 
-## 7. Contrast Rules
-
-When placing text on colored backgrounds:
-
-| Background | Text Color |
-|------------|------------|
-| Burgundy (`#3C0013`) | White/Light beige (`#F9F6F1`) |
-| Dark overlay | White |
-| Light beige background | Dark gray (`#333333`) or Burgundy |
-| Gray accent (`#4C4C4C`) | White |
-
-**Never**: Dark text on dark backgrounds
+Blog pages also use absolute paths:
+```html
+<link rel="stylesheet" href="/css/style.css">
+<script src="/js/script.js"></script>
+```
 
 ---
 
-## 8. Navigation
+## 7. Navigation
 
-- Logo links to home (index.html)
-- Nav items: About, Products, Impact, Contact
+- Logo links to home (`/`)
+- Nav items: About, Products, Impact, **Blog**, Contact
 - Mobile hamburger menu for screens < 768px
-- Active page indicated with `nav-link active` class (optional, handled per-page)
+- Footer includes: About, Products, Our Impact, Blog, Contact, Privacy, Terms
 
 ---
 
-## 9. Form Styling (Contact Page)
+## 8. Payment Methods
 
-- Netlify form integration (`netlify` attribute)
-- Required fields marked with asterisk
-- Form validation via JavaScript
-- Success message shown after submission
+Display on homepage, products page, and contact page:
+- "I accept Cash, Credit, and Debit."
 
 ---
 
-## 10. Quick Reference - LESS Variables
+## 9. Legal Pages
 
-```less
-// Primary Burgundy
-@burgundy-primary: #3C0013;
-@burgundy-lighter: #58001D;
-@burgundy-darker: #28000D;
+### Terms & Conditions includes:
+- Food Safety Disclaimer: "Golden Ticket Chocolates are made in a home kitchen that is not subject to Florida food safety regulations or inspection."
+- Allergen warnings
+- 3-package limit per person
+- All sales final
 
-// Secondary/Accent (Gray)
-@gold-primary: #4C4C4C;
-@gold-lighter: #5C5C5C;
-@gold-darker: #3C3C3C;
+---
 
-// Backgrounds
-@white: #F9F6F1;
-@off-white: #F5F2ED;
-@light-gray: #F0EDE8;
+## 10. Blog Structure
 
-// Text
-@dark-gray: #333333;
-@medium-gray: #888888;
-```
+Simple HTML/CSS blog (no static site generator):
+
+1. `blog/index.html` - Lists all blog posts as chocolate-styled cards
+2. Individual posts as separate HTML files (e.g., `blog/100-reasons-dark-chocolate.html`)
+3. Use `.benefits-list` class for numbered benefit lists in posts
+4. Include `.post-cta` section at end of posts
+
+To add a new blog post:
+1. Create new HTML file in `blog/` folder
+2. Add card linking to it in `blog/index.html`
+
+---
+
+## 11. Color Palette (Updated)
+
+### Primary Burgundy
+| Variable | Hex | Usage |
+|----------|-----|-------|
+| @burgundy-primary | #7A0028 | Header, body background |
+| @burgundy-lighter | #8B0030 | Hover states |
+| @burgundy-darker | #5A001E | Darker sections |
+
+### Chocolate Colors (for containers)
+| Variable | Hex | Usage |
+|----------|-----|-------|
+| @chocolate-dark | #1A0D05 | Darkest chocolate, borders |
+| @chocolate-medium | #2C1608 | Card backgrounds |
+| @chocolate-light | #4A2814 | Highlights, borders |
+| @chocolate-highlight | #5C3317 | Lighter accents |
+
+### Accent
+| Variable | Hex | Usage |
+|----------|-----|-------|
+| Gold | #DCAE55 | Buttons, headings, accents |
+
+---
+
+## 12. Quick Reminders
+
+1. **Voice**: First-person singular (I/me), warm community tone
+2. **Containers**: All cards look like chocolate pieces
+3. **Paths**: Use absolute paths (`/`) in includes and blog
+4. **Build**: Just `npm run build:css` - no Eleventy
+5. **Blog**: Simple HTML files, no templating
+6. **Selection/Scrollbar**: Chocolate brown colored
+7. **Payment**: Cash, Credit, Debit accepted
+8. **Legal**: Food safety disclaimer in terms.html
 
 ---
 
 ## Version History
 
-- **Initial Build**: Em/VW scaling system, 5-page structure
-- **Color Updates**: Primary changed from #660033 → #3C0013
-- **Font Updates**: Replaced Google Fonts with Catseye W00 Bold and VAG Rundschrift
-- **Structure Updates**: Header and footer moved to includes folder
-- **Hero Update**: Separated from header, added background image with overlay
-
-## Updated Captured Rules (if any of these rules override the initial rules, the updated rules take precedence):
-1. Em/VW Scaling System - 14px → 16px → 0.8vw formula
-2. Color Palette - Primary burgundy #3C0013, secondary gray #4C4C4C, button #C1AA76, background #F9F6F1
-3. Typography - Catseye W00 Bold (headings), VAG Rundschrift (body)
-4. Component Structure - Header/footer in includes folder, hero with background image overlay
-5. Contrast Rules - Light text on dark backgrounds, dark text on light
-6. Navigation - No "Home" link, logo links home
-7. Footer Layout - Centered with stacked links, inline underlined contact info
-8. LESS Variables - Quick reference for all color variables
-9. Compile Command - npx lessc css/style.less css/style.css
+- **Initial Build**: Em/VW scaling, 5-page structure
+- **Chocolate Styling**: All containers styled as 3D chocolate pieces
+- **Voice Update**: Changed from "we/us" to "I/me" (one-man operation)
+- **Copy Update**: Warm, community-focused language
+- **Blog Added**: Simple HTML/CSS blog structure
+- **Eleventy Removed**: Simplified to LESS-only build
+- **Selection/Scrollbar**: Chocolate brown styling added
