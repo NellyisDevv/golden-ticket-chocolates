@@ -1,26 +1,11 @@
 {
   "name": "golden-ticket-chocolates",
   "version": "1.0.0",
-  "description": "Premium organic, vegan, non-GMO dark chocolate with a mission to give back. A registered 501(c)(3) non-profit organization.",
-  "main": "index.js",
+  "description": "Golden Ticket Chocolates website",
   "scripts": {
-    "build": "npx @11ty/eleventy",
-    "dev": "npx @11ty/eleventy --serve",
-    "build:css": "npx lessc css/style.less css/style.css"
+    "build:css": "lessc css/style.less css/style.css"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/NellyisDevv/golden-ticket-chocolates.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/NellyisDevv/golden-ticket-chocolates/issues"
-  },
-  "homepage": "https://github.com/NellyisDevv/golden-ticket-chocolates#readme",
   "devDependencies": {
-    "@11ty/eleventy": "^3.1.2"
+    "less": "^4.2.0"
   }
 }
