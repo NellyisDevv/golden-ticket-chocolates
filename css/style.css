@@ -441,11 +441,16 @@ a:focus {
   width: 2.5em;
   height: 2.5em;
   min-width: 2.5em;
-  background-color: #28000D;
+  background: #2C1608;
   color: #FFFFFF;
   font-size: 1em;
   font-weight: 700;
-  border-radius: 50%;
+  border-radius: 0.3em;
+  position: relative;
+  border: 0.25em solid #4A2814;
+  border-bottom-color: #1A0D05;
+  border-right-color: #1A0D05;
+  box-shadow: 0.2em 0.3em 0.6em rgba(0, 0, 0, 0.5), -0.2em 0.3em 0.6em rgba(0, 0, 0, 0.35), 0.1em 0.15em 0.3em rgba(0, 0, 0, 0.4), -0.1em 0.15em 0.3em rgba(0, 0, 0, 0.3), inset 0.1em 0.1em 0.2em rgba(255, 255, 255, 0.08), inset -0.1em -0.1em 0.3em rgba(0, 0, 0, 0.25), inset 0.1em -0.1em 0.2em rgba(255, 255, 255, 0.04), inset -0.1em 0.1em 0.2em rgba(0, 0, 0, 0.15);
 }
 .feature-text h3 {
   font-size: 1.1em;
@@ -1232,7 +1237,7 @@ a:focus {
 .cta-banner .btn-outline:hover,
 .cta-banner .btn-outline:focus {
   background-color: #FFFFFF;
-  color: #28000D;
+  color: #7A0028;
 }
 .cta-banner p {
   font-size: 1.1em;
