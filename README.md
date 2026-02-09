@@ -12,8 +12,6 @@ Golden Ticket Chocolates sells premium 75% dark chocolate to fund restaurant gif
 golden-ticket-chocolates/
 ├── index.html          # Homepage - Hero, mission, how it works, products preview
 ├── about.html          # About page - Founder story, values, 501(c)(3) info
-├── products.html       # Products - Current products, coming soon, impact model
-├── impact.html         # Impact - Distribution process, community stories
 ├── contact.html        # Contact - Form, FAQ, sales locations
 ├── css/
 │   ├── style.less      # LESS source with em/vw scaling system
@@ -173,8 +171,6 @@ To receive email notifications:
 Edit the HTML files directly:
 - `index.html` - Homepage content
 - `about.html` - About page content
-- `products.html` - Product listings
-- `impact.html` - Impact stories
 - `contact.html` - Contact info and FAQ
 
 ### Style Changes
@@ -208,7 +204,7 @@ Edit the HTML files directly:
 ## Contact
 
 - **Email**: rhett.j.diez@proton.me
-- **Phone**: 813-475-8877
+- **Phone**: (813) 773-5897
 
 ## License
 

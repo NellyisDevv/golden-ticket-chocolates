@@ -117,8 +117,6 @@ html { scrollbar-color: @chocolate-medium @burgundy-darker; }
 golden-ticket-chocolates/
 ├── index.html
 ├── about.html
-├── products.html
-├── impact.html
 ├── contact.html
 ├── privacy.html
 ├── terms.html
